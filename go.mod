@@ -1,6 +1,6 @@
 module github.com/guanting112/taiwan-id-validator
 
-go 1.21.0
+go 1.21
 
 require github.com/stretchr/testify v1.11.1
 
