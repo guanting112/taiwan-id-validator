@@ -121,6 +121,10 @@ func ValidateUbn(ubn string) bool {
 		return false
 	}
 
+	if ubn == "00000000" {
+		return false
+	}
+
 	sum1 := 0
 	sum2 := 0
 

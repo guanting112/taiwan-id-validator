@@ -425,6 +425,7 @@ func Test_ValidateUbn_Ok(t *testing.T) {
 		{"Valid Ubn 10458570", "10458570", true},
 		{"Valid Ubn 10458570", "22099131", true},
 
+		{"Invalid Ubn 00000000", "00000000", false},
 		{"Invalid Ubn 1", "12345678", false},
 		{"Invalid Ubn 2", "12345678", false},
 		{"Invalid Ubn 3", "1234567821u241", false},
