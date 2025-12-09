@@ -6,6 +6,7 @@ import (
 )
 
 var (
+	ubnWeights    = []int{1, 2, 1, 2, 1, 2, 4, 1}
 	letterWeights = map[rune]int{
 		'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16,
 		'H': 17, 'J': 18, 'K': 19, 'L': 20, 'M': 21, 'N': 22, 'P': 23,
@@ -15,6 +16,7 @@ var (
 	nationalIdRegExp = regexp.MustCompile(`^[A-Z][12]\d{8}$`)
 	newArcIdRegExp   = regexp.MustCompile(`^[A-Z][89]\d{8}$`)
 	oldArcIdRegExp   = regexp.MustCompile(`^[A-Z][A-Z]\d{8}$`)
+	ubnRegExp        = regexp.MustCompile(`^\d{8}$`)
 )
 
 // ValidateArcId checks if the given ID is a valid Taiwan Alien Resident Certificate number
@@ -111,4 +113,32 @@ func validateOldArcIdFormat(id string) bool {
 	sum += checkDigit
 
 	return sum%10 == 0
+}
+
+// ValidateUbn checks if the given UBN is a valid Taiwan Company Tax ID.
+func ValidateUbn(ubn string) bool {
+	if !ubnRegExp.MatchString(ubn) {
+		return false
+	}
+
+	sum1 := 0
+	sum2 := 0
+
+	for i, weight := range ubnWeights {
+		if i == 6 && ubn[i] == '7' {
+			sum1 += 1
+			sum2 += 0
+		} else {
+			digit := int(ubn[i] - '0')
+			product := digit * weight
+			sum1 += (product / 10) + (product % 10)
+			sum2 += (product / 10) + (product % 10)
+		}
+	}
+
+	if sum1%5 == 0 || sum2%5 == 0 {
+		return true
+	}
+
+	return false
 }
