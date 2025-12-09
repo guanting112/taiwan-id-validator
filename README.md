@@ -1,5 +1,6 @@
 # Taiwan ID Validator (twid)
 
+[![Go Test](https://github.com/guanting112/taiwan-id-validator/actions/workflows/go.yml/badge.svg)](https://github.com/guanting112/taiwan-id-validator/actions/workflows/go.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/guanting112/taiwan-id-validator.svg)](https://pkg.go.dev/github.com/guanting112/taiwan-id-validator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
